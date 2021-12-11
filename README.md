@@ -16,5 +16,5 @@ AR Business Card done by using OpenCV and OpenGL. This repository includes codes
 
  # Notes:
  1. Calibrate your own camera and save the values into ```cam_parameter/cam_matrix.txt``` and distorted coefficient to ```cam_parameter/dist_coeff.txt```
- 2. Generate aruco marker
+ 2. You may want to generate aruco marker and set the parameter in the ```marker.py``` unless you stick to the same marker that already in used.
  3. Pygame window is used for the program and each frame in the window will be saved in the directory ```frames``` - you may run the script ```frame_to_videos.py``` after the demonstration and get a video result.
