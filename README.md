@@ -20,7 +20,13 @@ AR Business Card done by using OpenCV and OpenGL. This repository includes codes
  3. Pygame window is used to display the program and each frame in the window will be saved in the directory ```frames``` - you may run the script ```frame_to_videos.py``` after the demonstration and get a video result.
  4. Feel free to replace all the sources in the ```src``` folder. The folder includes all the iamges and videos that will be projected onto the scene. ```projection.py``` handles the 2D projection (using homography matrix) while the ```objloader.py``` handles the 3D model projection. 3D models are located in the folder ```3d_models```.
 
+Result example (in video format):
 
 
-*Notes that this is only for academic orientation purpose and not for any business purpose. Since this a demonstration of using OpenCV and OpenGL, you may notice that small changes of scene or vibration will affect the performance. You may consider to use Vuforia, Unity or any other kinds of techniques will definitely boost the performance and produce a better result.
+https://user-images.githubusercontent.com/49195906/145685497-9c5266ac-898f-400f-be45-9dc104684b25.mp4
+
+
+
+
+***NOTES** that this is only for academic orientation purpose and not for any business purpose. Since this a demonstration of using OpenCV and OpenGL, you may notice that small changes of scene or vibration will affect the performance. You may consider to use Vuforia, Unity or any other kinds of techniques will definitely boost the performance and produce a better result.
  
