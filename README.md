@@ -20,5 +20,5 @@ AR Business Card done by using OpenCV and OpenGL. This repository includes codes
  3. Pygame window is used to display the program and each frame in the window will be saved in the directory ```frames``` - you may run the script ```frame_to_videos.py``` after the demonstration and get a video result.
  
  
-** *Notes that this is only for orientation academic demonstration and not for any business purpose. You may use Vuforia, Unity or any other kinds of techniques that will definitely boost the performance and produce a better result.**
+**** Notes that this is only for orientation academic demonstration and not for any business purpose. You may use Vuforia, Unity or any other kinds of techniques that will definitely boost the performance and produce a better result.**
  
