@@ -3,8 +3,9 @@ AR Business Card done by using OpenCV and OpenGL. This repository includes codes
 
 # Requirements:
 1. OpenCV and OpenGL installation
-2. Generate aruco marker
-3. Camera Calibration
+2. Pygame
+3. Generate aruco marker
+4. Camera Calibration
 
 # Contents:
 ```main.py``` - main program script
@@ -36,6 +37,6 @@ https://user-images.githubusercontent.com/49195906/145685551-c793966f-bbaa-457e-
 
 
 
-# Important Notes!!
+# IMPORTANT NOTE!!
 This is only for academic orientation purpose and not for any business purpose. Since this a demonstration of using OpenCV and OpenGL, you may notice that small changes of scene or vibration will affect the performance. You may consider to use Vuforia, Unity or any other kinds of techniques will definitely boost the performance and produce a better result.
  
