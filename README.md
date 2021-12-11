@@ -8,10 +8,15 @@ AR Business Card done by using OpenCV and OpenGL. This repository includes codes
 
 # Contents:
 ```main.py``` - main program script
+
 ```marker.py``` - script for detecting aruco marker
+
 ```objloader.py``` - load in 3d model and projection
+
 ```matrixTrasnform.py``` - script for handling model view matrix and projection matrix
+
 ```projeciton.py``` - opencv for 2d images projection 
+
 ```frame_to_videos.py``` - combine images to video
 
  # Notes:
