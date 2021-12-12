@@ -27,7 +27,7 @@ AR Business Card done using OpenCV and OpenGL. This repository is a demonstratio
  4. Feel free to replace all the sources in the ```src``` folder. The folder includes all the iamges and videos that will be projected onto the scene. ```projection.py``` handles the 2D projection (using homography matrix) while the ```objloader.py``` handles the 3D model projection. 3D models are located in the folder ```3d_models```.
  5. I have already recorded video for the demonstration. You may set the video path ```(card_cap)``` in ```main.py``` to 0 for real-time laptop camera capture.
 
-Result example (video):
+Sample result (video):
 
 
 
