@@ -65,7 +65,7 @@ def overlay(frame, picture, marker_bbox, prev_homo, deskew=False):
     # severely affect the stability of homopgrahy matrix
     homography_matrix, _ = cv2.findHomography(img_points,marker_bbox,cv2.RANSAC,5)
     if prev_homo is not None:
-        cv2.accumulateWeighted(prev_homo, homography_matrix, 0.85)
+        cv2.accumulateWeighted(prev_homo, homography_matrix, 0.9)
     prev_homo = homography_matrix
 
     warpedImg = cv2.warpPerspective(picture, homography_matrix, (frame.shape[1],frame.shape[0]),
