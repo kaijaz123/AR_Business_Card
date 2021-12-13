@@ -32,20 +32,20 @@ def projection2D(frame, edu_frame, marker_bbox, order, prev_homo):
     width, height = (max(marker_bbox[:,0])-min(marker_bbox[:,0]), max(marker_bbox[:,1])-min(marker_bbox[:,1]))
 
     # order - make a gap for 2 frames to overlay next items
-    if order >= 1:
+    if order >= 13:
         # adjust the position
         ppicture2_point[:,0] += (width + frame.shape[1]//10)
         frame, homo = overlay(frame, pp2_resize, ppicture2_point, prev_homo[0])
         prev_homo[0] = homo
 
-    if order >= 3:
+    if order >= 15:
         # adjust the position
         properties_point[:,0] += (width + frame.shape[1]//10)
         properties_point[:,1] += (height + (frame.shape[0]//9))
         frame, homo = overlay(frame, properties_resize, properties_point, prev_homo[1])
         prev_homo[1] = homo
 
-    if order >= 5:
+    if order >= 17:
         # adjust the position
         edu_point[:,0] -= (width + (frame.shape[0]//9) + 20)
         edu_point[:,1] += (height + (frame.shape[0]//9))
