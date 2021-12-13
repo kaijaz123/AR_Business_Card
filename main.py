@@ -61,7 +61,6 @@ class ImageLoader:
         glDisable(GL_TEXTURE_2D)
 
 if __name__ == '__main__':
-    # card_cap = cv2.VideoCapture(0)
     card_cap = cv2.VideoCapture("src/business_card.mov")
     edu_cap = cv2.VideoCapture("src/education.mp4")
 
