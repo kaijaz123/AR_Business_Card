@@ -17,10 +17,10 @@ def projection2D(frame, edu_frame, marker_bbox, order, prev_homo):
     properties = cv2.imread("src/properties.png")
 
     # rescale the image based on the image size
-    scale = 2.5
+    scale = 1.8
     pp2_resize = cv2.resize(ppicture2, (int(ppicture2.shape[1]//scale),int(ppicture2.shape[0]//scale)),
                             interpolation = cv2.INTER_AREA)
-    edu_frame = cv2.resize(edu_frame, (int(edu_frame.shape[1]//(scale-0.5)),int(edu_frame.shape[0]//(scale-0.5))),
+    edu_frame = cv2.resize(edu_frame, (int(edu_frame.shape[1]//(scale)),int(edu_frame.shape[0]//(scale))),
                            interpolation = cv2.INTER_AREA)
     properties_resize = cv2.resize(properties, (int(properties.shape[1]//scale),int(properties.shape[0]//scale)),
                                    interpolation = cv2.INTER_AREA)
@@ -35,20 +35,21 @@ def projection2D(frame, edu_frame, marker_bbox, order, prev_homo):
     if order >= 13:
         # adjust the position
         ppicture2_point[:,0] += (width + frame.shape[1]//10)
+        ppicture2_point[:,1] -= 25
         frame, homo = overlay(frame, pp2_resize, ppicture2_point, prev_homo[0])
         prev_homo[0] = homo
 
     if order >= 15:
         # adjust the position
         properties_point[:,0] += (width + frame.shape[1]//10)
-        properties_point[:,1] += (height + (frame.shape[0]//9))
+        properties_point[:,1] += (height + (frame.shape[0]//5))
         frame, homo = overlay(frame, properties_resize, properties_point, prev_homo[1])
         prev_homo[1] = homo
 
     if order >= 17:
         # adjust the position
         edu_point[:,0] -= (width + (frame.shape[0]//9) + 20)
-        edu_point[:,1] += (height + (frame.shape[0]//9))
+        edu_point[:,1] += (height + (frame.shape[0]//5))
         frame, homo = overlay(frame, edu_frame, edu_point, prev_homo[2], False)
         prev_homo[2] = homo
 
@@ -61,11 +62,19 @@ def overlay(frame, picture, marker_bbox, prev_homo, deskew=False):
     width, height = (max(marker_bbox[:,0])-min(marker_bbox[:,0]), max(marker_bbox[:,1])-min(marker_bbox[:,1]))
     img_points = np.float32([[0,0],[img.shape[1],0],[img.shape[1],img.shape[0]],[0,img.shape[0]]])
 
-    # accumulate the homopgrahy matrix - prevent vibration that will
-    # severely affect the stability of homopgrahy matrix
+    # find homopgrahy
     homography_matrix, _ = cv2.findHomography(img_points,marker_bbox,cv2.RANSAC,5)
     if prev_homo is not None:
-        cv2.accumulateWeighted(prev_homo, homography_matrix, 0.9)
+        # accumulate homopgrahy matrix from prev one
+        cv2.accumulateWeighted(prev_homo, homography_matrix, 0.7)
+
+        # takes the average difference between two homopgrahy - prevent instability (vibration and etc)
+        for index,(prev,cur) in enumerate(zip(prev_homo[:,:2], homography_matrix[:][:,:2])):
+            for i in range(2):
+                diff = abs(cur[i]-prev[i])
+                if diff < 0.2:
+                    homography_matrix[index][i] = (prev[i] + cur[i])/2
+    # assign current homography to prev one
     prev_homo = homography_matrix
 
     warpedImg = cv2.warpPerspective(picture, homography_matrix, (frame.shape[1],frame.shape[0]),
